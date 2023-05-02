@@ -21,15 +21,15 @@
 // 	private final Joystick joystick;
 
 // 	private final JoystickButton aButton;
-// 	private final Button bButton;
-// 	private final Button xButton;
-// 	private final Button yButton;
-// 	private final Button leftBumperButton;
-// 	private final Button rightBumperButton;
-// 	private final Button backButton;
-// 	private final Button startButton;
-// 	private final Button leftStickButton;
-// 	private final Button rightStickButton;
+// 	private final JoystickButton bButton;
+// 	private final JoystickButton xButton;
+// 	private final JoystickButton yButton;
+// 	private final JoystickButton leftBumperButton;
+// 	private final JoystickButton rightBumperButton;
+// 	private final JoystickButton backButton;
+// 	private final JoystickButton startButton;
+// 	private final JoystickButton leftStickButton;
+// 	private final JoystickButton rightStickButton;
 
 // 	private final Axis leftTriggerAxis;
 // 	private final Axis leftXAxis;
@@ -114,49 +114,49 @@
 // 	}
 
 // 	@Override
-// 	public Button getXButton() {
+// 	public JoystickButton getXButton() {
 // 		return xButton;
 // 	}
 
 // 	@Override
-// 	public Button getYButton() {
+// 	public JoystickButton getYButton() {
 // 		return yButton;
 // 	}
 
 // 	@Override
-// 	public Button getLeftBumperButton() {
+// 	public JoystickButton getLeftBumperButton() {
 // 		return leftBumperButton;
 // 	}
 
 // 	@Override
-// 	public Button getRightBumperButton() {
+// 	public JoystickButton getRightBumperButton() {
 // 		return rightBumperButton;
 // 	}
 
 // 	@Override
-// 	public Button getBackButton() {
+// 	public JoystickButton getBackButton() {
 // 		return backButton;
 // 	}
 
 // 	@Override
-// 	public Button getStartButton() {
+// 	public JoystickButton getStartButton() {
 // 		return startButton;
 // 	}
 
 // 	@Override
-// 	public Button getLeftJoystickButton() {
+// 	public JoystickButton getLeftJoystickButton() {
 // 		return leftStickButton;
 // 	}
 
 // 	@Override
-// 	public Button getRightJoystickButton() {
+// 	public JoystickButton getRightJoystickButton() {
 // 		return rightStickButton;
 // 	}
 
-// 	@Override
-// 	public Trigger getDPadButton(DPadButton.Direction direction) {
-// 		return dpadButtons[direction.ordinal()];
-// 	}
+// 	// @Override
+// 	// public Trigger getDPadButton(DPadButton.Direction direction) {
+// 	// 	return dpadButtons[direction.ordinal()];
+// 	// }
 
 // 	public Joystick getRawJoystick() {
 // 		return joystick;
