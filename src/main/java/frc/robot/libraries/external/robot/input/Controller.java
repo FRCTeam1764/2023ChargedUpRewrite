@@ -109,5 +109,5 @@ public abstract class Controller {
 	 * @return The D-Pad button of the specified direction
 	 * @since 1.0
 	 */
-	public abstract Button getDPadButton(DPadButton.Direction direction);
+	//public abstract Button getDPadButton(DPadButton.Direction direction);
 }
