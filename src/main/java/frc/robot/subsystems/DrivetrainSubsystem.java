@@ -1,7 +1,8 @@
 package frc.robot.subsystems;
 
-import frc.robot.SwerveModule;
-import frc.robot.Constants.Constants;
+import frc.robot.SwerveConstants.SwerveModule;
+import frc.robot.SwerveConstants.SwerveModuleConstants;
+import frc.robot.SwerveConstants.driveConstants;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
@@ -17,21 +18,21 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Swerve extends SubsystemBase {
+public class DrivetrainSubsystem extends SubsystemBase {
     public SwerveDriveOdometry swerveOdometry;
     public SwerveModule[] mSwerveMods;
     public Pigeon2 gyro;
 
-    public Swerve() {
-        gyro = new Pigeon2(frc.robot.Constants.Swerve.pigeonID);
+    public DrivetrainSubsystem() {
+        gyro = new Pigeon2(frc.robot.SwerveConstants.driveConstants.Swerve.pigeonID);
         gyro.configFactoryDefault();
         zeroGyro();
 
         mSwerveMods = new SwerveModule[] {
-            new SwerveModule(0, frc.robot.Constants.Mod0.constants),
-            new SwerveModule(1, frc.robot.Constants.Mod1.constants),
-            new SwerveModule(2, frc.robot.Constants.Mod2.constants),
-            new SwerveModule(3, frc.robot.Constants.Mod3.constants)
+            new SwerveModule(0, driveConstants.Swerve.Mod0.constants0),
+            new SwerveModule(1, frc.robot.SwerveConstants.driveConstants.Swerve.Mod1.constants1),
+            new SwerveModule(2, frc.robot.SwerveConstants.driveConstants.Swerve.Mod2.constants2),
+            new SwerveModule(3, frc.robot.SwerveConstants.driveConstants.Swerve.Mod3.constants3)
         };
 
         /* By pausing init for a second before setting module offsets, we avoid a bug with inverting motors.
@@ -40,12 +41,12 @@ public class Swerve extends SubsystemBase {
         Timer.delay(1.0);
         resetModulesToAbsolute();
 
-        swerveOdometry = new SwerveDriveOdometry(frc.robot.Constants.Swerve.swerveKinematics, getYaw(), getModulePositions());
+        swerveOdometry = new SwerveDriveOdometry(frc.robot.SwerveConstants.driveConstants.Swerve.swerveKinematics, getYaw(), getModulePositions());
     }
 
     public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
         SwerveModuleState[] swerveModuleStates =
-            frc.robot.Constants.Swerve.swerveKinematics.toSwerveModuleStates(
+            frc.robot.SwerveConstants.driveConstants.Swerve.swerveKinematics.toSwerveModuleStates(
                 fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds(
                                     translation.getX(), 
                                     translation.getY(), 
@@ -57,7 +58,7 @@ public class Swerve extends SubsystemBase {
                                     translation.getY(), 
                                     rotation)
                                 );
-        SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, frc.robot.Constants.Swerve.maxSpeed);
+        SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, frc.robot.SwerveConstants.driveConstants.Swerve.maxSpeed);
 
         for(SwerveModule mod : mSwerveMods){
             mod.setDesiredState(swerveModuleStates[mod.moduleNumber], isOpenLoop);
@@ -66,7 +67,7 @@ public class Swerve extends SubsystemBase {
 
     /* Used by SwerveControllerCommand in Auto */
     public void setModuleStates(SwerveModuleState[] desiredStates) {
-        SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, frc.robot.Constants.Swerve.maxSpeed);
+        SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, frc.robot.SwerveConstants.driveConstants.Swerve.maxSpeed);
         
         for(SwerveModule mod : mSwerveMods){
             mod.setDesiredState(desiredStates[mod.moduleNumber], false);
@@ -102,7 +103,7 @@ public class Swerve extends SubsystemBase {
     }
 
     public Rotation2d getYaw() {
-        return (frc.robot.Constants.Swerve.invertGyro) ? Rotation2d.fromDegrees(360 - gyro.getYaw()) : Rotation2d.fromDegrees(gyro.getYaw());
+        return (frc.robot.SwerveConstants.driveConstants.Swerve.invertGyro) ? Rotation2d.fromDegrees(360 - gyro.getYaw()) : Rotation2d.fromDegrees(gyro.getYaw());
     }
 
     public void resetModulesToAbsolute(){
